@@ -24,11 +24,12 @@ class App extends Component {
     } else {
       const productToAdd = {
         id: product.id,
-        qta: product.qta,
+        qta: 1,
         priceSinglePiece: product.price,
         partialPrice: product.price
       }
       cart.products.push(productToAdd)
+      cart.totalProducts = 1;
     }
     this.setState({ cart });
   }
