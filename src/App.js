@@ -13,23 +13,28 @@ class App extends Component {
     const cards = this.state.cards.filter(card => card.id !== cardId);
     this.setState({ cards });
   }
-  handleAddProduct = product => {
+  handleAddProduct = productToInsert => {
     const cart = JSON.parse(JSON.stringify(this.state.cart))
-    const IndexSearched = cart.products.findIndex(product => product);
+    const IndexSearched = cart.products.findIndex(product => productToInsert.id === product.id);
+    console.log('IndexSearched', IndexSearched);
     if (IndexSearched > -1) {
+      console.log('true')
       cart.products[IndexSearched].qta++
-      cart.products[IndexSearched].partialPrice = cart.products[IndexSearched].qta++ * product.price
+      cart.products[IndexSearched].partialPrice = cart.products[IndexSearched].qta * productToInsert.price
       cart.totalProducts++
-      cart.amount = cart.amount + product.price
+      cart.amount += productToInsert.price
+      console.log('true', cart)
     } else {
-      const productToAdd = {
-        id: product.id,
+      console.log('false')
+      cart.products.push({
+        id: productToInsert.id,
         qta: 1,
-        priceSinglePiece: product.price,
-        partialPrice: product.price
-      }
-      cart.products.push(productToAdd)
-      cart.totalProducts = 1;
+        priceSinglePiece: productToInsert.price,
+        partialPrice: productToInsert.price
+      })
+      cart.totalProducts++;
+      cart.amount += productToInsert.price
+      console.log('cart false', cart)
     }
     this.setState({ cart });
   }
