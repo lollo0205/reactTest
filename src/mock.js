@@ -6,12 +6,12 @@ import Intel_I7 from "./images/intel_i7.jfif";
 import Intel_I9 from "./images/intel_i9.jfif";
 
 export const cards = [
-  { id: 1, image: Ryzen_5_5600G, price: 256.00, name: 'Ryzen 5 5600G', qtaStock: 20 },
-  { id: 2, image: Ryzen_7_5700G, price: 356.00, name: 'Ryzen 7 5700G', qtaStock: 20 },
-  { id: 3, image: Ryzen_9_5900X, price: 456.00, name: 'Ryzen 9 5900X', qtaStock: 20 },
-  { id: 4, image: Intel_I5, price: 320.00, name: "Intel I5", qtaStock: 20 },
-  { id: 5, image: Intel_I7, price: 420.00, name: "Intel I7", qtaStock: 20 },
-  { id: 6, image: Intel_I9, price: 520.00, name: "intel I9", qtaStock: 20 }
+  { id: 1, type: 'cpu', image: Ryzen_5_5600G, price: 256.00, name: 'Ryzen 5 5600G', qtaStock: 20 },
+  { id: 2, type: 'cpu', image: Ryzen_7_5700G, price: 356.00, name: 'Ryzen 7 5700G', qtaStock: 20 },
+  { id: 3, type: 'cpu', image: Ryzen_9_5900X, price: 456.00, name: 'Ryzen 9 5900X', qtaStock: 20 },
+  { id: 4, type: 'cpu', image: Intel_I5, price: 320.00, name: "Intel I5", qtaStock: 20 },
+  { id: 5, type: 'cpu', image: Intel_I7, price: 420.00, name: "Intel I7", qtaStock: 20 },
+  { id: 6, type: 'cpu', image: Intel_I9, price: 520.00, name: "intel I9", qtaStock: 20 }
 ]
 
 
