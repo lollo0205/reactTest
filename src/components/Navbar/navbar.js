@@ -1,6 +1,5 @@
 import { Component } from 'react'
-import CartModal from '../cart/CartModal';
-class Navbar extends Component {
+export default class Navbar extends Component {
   state = {
     showModal: false,
   }
@@ -24,4 +23,3 @@ class Navbar extends Component {
     )
   }
 }
-export default Navbar;
