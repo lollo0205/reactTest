@@ -1,8 +1,32 @@
 import { Component } from "react";
-import CartProductDetails from "./productDetails/CartProductDetails";
+import CartProductDetails from "./cartProductDetails/CartProductDetails";
 export default class CartModal extends Component {
   onChangeQtaProductCart = (op, idProductCart) => {
     this.props.onChangeQtaProductCart(op, idProductCart)
+  }
+  //   getCartProductDetails = products => {
+  //     const element = <section>
+  // {      this.props.cart.products.map(product => (
+  //       <CartProductDetails
+  //         key={product.id}
+  //         product={product}
+  //         onChangeQtaProductCart={this.onChangeQtaProductCart}
+  //       />
+  //       ))}
+  //       <li></li>
+  //     </section>
+
+
+  //   }
+  getCartProductsDetails = products => {
+    const element = this.props.cart.products.map(product => (
+      <CartProductDetails
+        key={product.id}
+        product={product}
+        onChangeQtaProductCart={this.onChangeQtaProductCart}
+      />
+    ));
+    return element;
   }
   render() {
     return (
@@ -15,13 +39,9 @@ export default class CartModal extends Component {
             </div>
             <div className="modal-body">
               <ul className="list-group list-group-flush">
-                {this.props.cart.products.map(product => (
-                  <CartProductDetails
-                    key={product.id}
-                    product={product}
-                    onChangeQtaProductCart={this.onChangeQtaProductCart}
-                  />
-                ))}
+                {this.props.cart.products.length > 0 ?
+                  this.getCartProductsDetails(this.props.cart.products) :
+                  <h5>non ci sono prodotti nel carrello</h5>}
                 <li className="list-group-item">
 
                   <div className="row">

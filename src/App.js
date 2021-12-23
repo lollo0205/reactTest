@@ -13,14 +13,16 @@ class App extends Component {
   handleChangeQtaProductCart = (op, idProductsCart) => {
     const cart = { ...this.state.cart };
     const IndexProduct = cart.products.findIndex(product => product.id === idProductsCart);
-    op === '-' ? cart.products[IndexProduct].qta-- : cart.products[IndexProduct].qta++;
-    console.log('IndexProduct', IndexProduct);
-    console.log('prodtqta', cart.products[IndexProduct].qta);
-    // console.log('cartslice', cart.products.slice(IndexProduct));
+    if (op === '-') {
+      cart.products[IndexProduct].qta -= 1;
+      cart.totalProducts = cart.totalProducts === 0 ? cart.totalProducts : cart.totalProducts - 1;
+    } else {
+      cart.products[IndexProduct].qta += 1;
+      cart.totalProducts++;
+    }
     cart.products[IndexProduct].qta === 0
       ? cart.products.splice(IndexProduct, 1)
       : cart.products[IndexProduct].partialPrice = cart.products[IndexProduct].qta * cart.products[IndexProduct].priceSinglePiece;
-    console.log(cart.products)
     cart.amount = cart.products.map(product => product.partialPrice).reduce((partial_sum, a) => partial_sum + a, 0);
     this.setState({ cart });
   }
