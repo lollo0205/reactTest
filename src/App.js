@@ -33,8 +33,6 @@ class App extends Component {
             <Route path="/shopping" element={<ShowProducts />} />
             <Route path="/contacts" element={<Contacts />} />
             <Route path="*" element={<PageNotFound />} />
-
-
           </Routes>
         </Container>
         <CartModal
