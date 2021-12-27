@@ -9,6 +9,7 @@ import {
 } from "react-router-dom"; import About from "./pages/about/about";
 import ShowProducts from "./pages/showProduct/showProducts";
 import Contacts from "./pages/contacts/contacts";
+import PageNotFound from "./pages/pageNotFound/pageNotFound";
 class App extends Component {
   state = {
     cart,
@@ -28,9 +29,11 @@ class App extends Component {
         <Container>
           <Routes>
             <Route exact path="/" element={<ShowProducts cart={this.state.cart} onChangeCart={this.handleChangeCart} />} />
-            <Route exact path="/about" element={<About />} />
-            <Route exact path="/shopping" element={<ShowProducts />} />
-            <Route exact path="/contacts" element={<Contacts />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/shopping" element={<ShowProducts />} />
+            <Route path="/contacts" element={<Contacts />} />
+            <Route path="*" element={<PageNotFound />} />
+
 
           </Routes>
         </Container>
