@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/reactTest/static/css/main.7bd91a11.css",
-    "main.js": "/reactTest/static/js/main.f3228727.js",
+    "main.js": "/reactTest/static/js/main.67313cb9.js",
     "static/js/787.c4ce6adf.chunk.js": "/reactTest/static/js/787.c4ce6adf.chunk.js",
     "static/media/bootstrap-icons.woff?": "/reactTest/static/media/bootstrap-icons.38c4d2499557ae0379fd.woff",
     "static/media/bootstrap-icons.woff2?": "/reactTest/static/media/bootstrap-icons.2b56e79ae5013246de29.woff2",
@@ -13,11 +13,11 @@
     "static/media/intel_i9.jfif": "/reactTest/static/media/intel_i9.a278be1159c2be884cea.jfif",
     "index.html": "/reactTest/index.html",
     "main.7bd91a11.css.map": "/reactTest/static/css/main.7bd91a11.css.map",
-    "main.f3228727.js.map": "/reactTest/static/js/main.f3228727.js.map",
+    "main.67313cb9.js.map": "/reactTest/static/js/main.67313cb9.js.map",
     "787.c4ce6adf.chunk.js.map": "/reactTest/static/js/787.c4ce6adf.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7bd91a11.css",
-    "static/js/main.f3228727.js"
+    "static/js/main.67313cb9.js"
   ]
 }
