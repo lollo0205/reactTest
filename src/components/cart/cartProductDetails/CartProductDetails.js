@@ -2,9 +2,7 @@ import { Component } from "react";
 import { Col, ListGroup, Row } from "react-bootstrap";
 
 export default class CartProductDetails extends Component {
-  onChangeQtaProductCart = (op, idProductCart) => {
-    this.props.onChangeQtaProductCart(op, idProductCart)
-  }
+
   render() {
     return (
       <ListGroup.Item>
@@ -15,13 +13,13 @@ export default class CartProductDetails extends Component {
           <Col >
             <Row >
               <Col className=" d-flex flex-row-reverse">
-                <i className=" cursor-pointer bi bi-bag-dash-fill" onClick={() => this.onChangeQtaProductCart('-', this.props.product.id)}></i>
+                <i className=" cursor-pointer bi bi-bag-dash-fill" onClick={() => this.props.onChangeQtaProductCart('-', this.props.product.id)}></i>
               </Col>
               <Col className=" d-flex flex-row-reverse">
                 <span>{this.props.product.qta}</span>
               </Col>
               <Col className=" d-flex flex-row-reverse">
-                <i className="cursor-pointer bi bi-bag-plus-fill" onClick={() => this.onChangeQtaProductCart('+', this.props.product.id)}></i>
+                <i className="cursor-pointer bi bi-bag-plus-fill" onClick={() => this.props.onChangeQtaProductCart('+', this.props.product.id)}></i>
               </Col>
             </Row>
           </Col>

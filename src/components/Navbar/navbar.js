@@ -1,7 +1,8 @@
-import { Component } from 'react'
+import { Component } from 'react';
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
 import LoginUser from '../user/login/loginUser';
-import RegisterUser from '../user/register/registerUser'
+import RegisterUser from '../user/register/registerUser';
+import { Link as LinkRouter } from 'react-router-dom';
 export default class NavbarComponent extends Component {
   state = {
     toggle: {
@@ -34,9 +35,14 @@ export default class NavbarComponent extends Component {
 
         <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
           <Container fluid>
-            <Navbar.Brand href="#home">Fullstack Hardware</Navbar.Brand>
+            <Navbar.Brand as={LinkRouter} to="/">Fullstack Hardware</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
+              <Nav className="me-auto">
+                <Nav.Link as={LinkRouter} to="/shopping" className="text-white" >shopping</Nav.Link>
+                <Nav.Link as={LinkRouter} to="/contacts">Contatti</Nav.Link>
+                <Nav.Link as={LinkRouter} to="/about">About</Nav.Link>
+              </Nav>
               <Nav>
                 <NavDropdown className='text-white' title={iconUser} id="collasible-nav-dropdown">
                   <NavDropdown.Item onClick={() => this.handleToggle('registerUserModal')} >Register</NavDropdown.Item>

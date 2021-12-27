@@ -5,30 +5,24 @@ export default class CartModal extends Component {
   state = {
     show: false
   }
-  onChangeQtaProductCart = (op, idProductCart) => {
-    this.props.onChangeQtaProductCart(op, idProductCart)
+
+  handleChangeQtaProductCart = (op, idProductsCart) => {
+    const cart = { ...this.props.cart };
+    const IndexProduct = cart.products.findIndex(product => product.id === idProductsCart);
+    op === '-' ? cart.products[IndexProduct].qta-- : cart.products[IndexProduct].qta++;
+    cart.products[IndexProduct].qta === 0
+      ? cart.products.splice(IndexProduct, 1)
+      : cart.products[IndexProduct].partialPrice = cart.products[IndexProduct].qta * cart.products[IndexProduct].priceSinglePiece;
+    cart.amount = cart.products.map(product => product.partialPrice).reduce((partial_sum, a) => partial_sum + a, 0);
+    this.props.onChangeCart(cart)
   }
-  //   getCartProductDetails = products => {
-  //     const element = <section>
-  // {      this.props.cart.products.map(product => (
-  //       <CartProductDetails
-  //         key={product.id}
-  //         product={product}
-  //         onChangeQtaProductCart={this.onChangeQtaProductCart}
-  //       />
-  //       ))}
-  //       <li></li>
-  //     </section>
-
-
-  //   }
   getCartProductsDetails = cart => {
     const element = <>
       {cart.products.map(product => (
         <CartProductDetails
           key={product.id}
           product={product}
-          onChangeQtaProductCart={this.onChangeQtaProductCart}
+          onChangeQtaProductCart={this.handleChangeQtaProductCart}
         />
       ))}
       <ListGroup.Item className="col d-flex flex-row-reverse">
@@ -56,8 +50,8 @@ export default class CartModal extends Component {
           <Button variant="danger" onClick={this.props.onShowModal}>
             Close
           </Button>
-          <Button variant="primary" onClick={this.props.onShowModal}>
-            Save Changes
+          <Button variant="success" onClick={this.props.onShowModal}>
+            checkout
           </Button>
         </Modal.Footer>
       </Modal>

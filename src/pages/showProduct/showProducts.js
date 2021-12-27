@@ -1,20 +1,11 @@
 import { Component } from "react";
-import Card from '../../components/card/card';
+import { Button, Row, Col, Container, Card } from "react-bootstrap";
 import { cards } from "../../mock";
 export default class ShowProducts extends Component {
   state = {
     cards
   }
-  handleChangeQtaProductCart = (op, idProductsCart) => {
-    const cart = { ...this.props.cart };
-    const IndexProduct = cart.products.findIndex(product => product.id === idProductsCart);
-    op === '-' ? cart.products[IndexProduct].qta-- : cart.products[IndexProduct].qta++;
-    cart.products[IndexProduct].qta === 0
-      ? cart.products.splice(IndexProduct, 1)
-      : cart.products[IndexProduct].partialPrice = cart.products[IndexProduct].qta * cart.products[IndexProduct].priceSinglePiece;
-    cart.amount = cart.products.map(product => product.partialPrice).reduce((partial_sum, a) => partial_sum + a, 0);
-    this.setState({ cart });
-  }
+
   handleDelete = cardId => {
     const cards = this.state.cards.filter(card => card.id !== cardId);
     this.setState({ cards });
@@ -37,26 +28,36 @@ export default class ShowProducts extends Component {
       cart.totalProducts++;
     }
     cart.amount = cart.products.map(product => product.partialPrice).reduce((partial_sum, a) => partial_sum + a, 0);
-    this.setState({ cart });
+    this.props.onChangeCart(cart)
   }
   render() {
     return (
       <>
-        <h1>HELLo I'M SHOWPRODUCTS</h1>
-        <div className="container">
+        <Container>
           <h1> Quale componente desideri acquistare?</h1>
           <hr />
-          <div className="row">
-            {this.state.cards.map(card => (
-              <Card
-                key={card.id}
-                card={card}
-                onDelete={this.handleDelete}
-                onAddProducts={this.handleAddProduct}
-              />
+          <Row>
+            {this.state.cards.map((card, idx) => (
+              <Col key={idx} lg={4} className="mt-2">
+                <Card style={{ width: '18rem', textAlign: 'center' }}>
+                  <Card.Img className="mx-auto d-block" style={{ height: '10rem', width: '17rem' }} variant="top" src={card.image} />
+                  <Card.Body>
+                    <Card.Title>{card.name}</Card.Title>
+                    <Card.Text>
+                      {card.price}€
+                    </Card.Text>
+                    <Card.Text>
+                      <b>Stock:</b> {card.qtaStock}
+                    </Card.Text>
+                    <Button variant="primary" className="me-2" onClick={() => this.handleAddProduct(card)}>add cart</Button>
+                    <Button variant="danger" disabled onClick={() => this.handleDelete(card.id)}>delete</Button>
+                  </Card.Body>
+                </Card>
+              </Col>
+
             ))}
-          </div>
-        </div>
+          </Row>
+        </Container>
       </>
     )
   }
