@@ -82,8 +82,8 @@ class App extends Component {
                     <Card.Text>
                       <b>Stock:</b> {card.qtaStock}
                     </Card.Text>
-                    <Button variant="primary" className="me-2" onClick={() => this.props.handleAddProduct(card)}>add cart</Button>
-                    <Button variant="danger" onClick={() => this.props.handleDelete(card.id)}>delete</Button>
+                    <Button variant="primary" className="me-2" onClick={() => this.handleAddProduct(card)}>add cart</Button>
+                    <Button variant="danger" onClick={() => this.handleDelete(card.id)}>delete</Button>
                   </Card.Body>
                 </Card>
               </Col>
