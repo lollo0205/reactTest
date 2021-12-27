@@ -1,6 +1,10 @@
 import { Component } from "react";
+import { Button, ListGroup, Modal } from "react-bootstrap";
 import CartProductDetails from "./cartProductDetails/CartProductDetails";
 export default class CartModal extends Component {
+  state = {
+    show: false
+  }
   onChangeQtaProductCart = (op, idProductCart) => {
     this.props.onChangeQtaProductCart(op, idProductCart)
   }
@@ -18,54 +22,45 @@ export default class CartModal extends Component {
 
 
   //   }
-  getCartProductsDetails = products => {
-    const element = this.props.cart.products.map(product => (
-      <CartProductDetails
-        key={product.id}
-        product={product}
-        onChangeQtaProductCart={this.onChangeQtaProductCart}
-      />
-    ));
+  getCartProductsDetails = cart => {
+    const element = <>
+      {cart.products.map(product => (
+        <CartProductDetails
+          key={product.id}
+          product={product}
+          onChangeQtaProductCart={this.onChangeQtaProductCart}
+        />
+      ))}
+      <ListGroup.Item className="col d-flex flex-row-reverse">
+        {this.props.cart.amount} €
+      </ListGroup.Item>
+    </>
+      ;
     return element;
   }
   render() {
     return (
-      <div className="modal show fade d-block" id="cartModal" style={{ backgroundColor: 'rgba(0,0,0,0.8)' }} >
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="cartModalLabel">Cart</h5>
-              <button type="button" className="btn-close" onClick={this.props.onShowModal}></button>
-            </div>
-            <div className="modal-body">
-              <ul className="list-group list-group-flush">
-                {this.props.cart.products.length > 0 ?
-                  this.getCartProductsDetails(this.props.cart.products) :
-                  <h5>non ci sono prodotti nel carrello</h5>}
-                <li className="list-group-item">
-
-                  <div className="row">
-                    {this.props.cart.products.length > 0 &&
-                      <div className="col d-flex justify-content-center">
-                        <button type="button" className="btn btn-primary">
-                          CHECKOUT
-                        </button>
-                      </div>}
-                    <div className="col d-flex justify-content-center">
-                      <button type="button" className="btn btn-danger" onClick={this.props.onShowModal}>
-                        EXIT
-                      </button>
-                    </div>
-                    <div className="col d-flex flex-row-reverse">
-                      {this.props.cart.amount} €
-                    </div>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Modal show={this.props.show} onHide={this.props.onShowModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Cart</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ListGroup variant="flush">
+            {this.props.cart.products.length > 0
+              ? this.getCartProductsDetails(this.props.cart)
+              : <h5 className="text-danger">Non ci sono prodotti nel carrello</h5>
+            }
+          </ListGroup>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={this.props.onShowModal}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={this.props.onShowModal}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     )
   }
 }

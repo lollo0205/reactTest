@@ -1,13 +1,13 @@
 import { Component } from "react";
-import Card from "./components/card/card";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import CartModal from "./components/cart/CartModal";
-import Navbar from "./components/Navbar/navbar";
+import NavbarComponent from "./components/Navbar/navbar";
 import { cards, cart } from "./mock";
 class App extends Component {
   state = {
     cards,
     cart,
-    showModal: false
+    showCartModal: false
   }
 
   handleChangeQtaProductCart = (op, idProductsCart) => {
@@ -62,33 +62,40 @@ class App extends Component {
 
     return (
       <>
-        <Navbar
+        <NavbarComponent
           totalProductOnCart={this.state.cart.totalProducts}
-          onShowModal={this.handleShowModal}
+          onShowModal={() => this.setState({ showCartModal: !this.state.showCartModal })}
         />
-        <div className="container">
+        <Container>
           <h1> Quale componente desideri acquistare?</h1>
           <hr />
-          <div className="row">
+          <Row>
             {this.state.cards.map(card => (
-              <Card
-                key={card.id}
-                card={card}
-                onDelete={this.handleDelete}
-                onAddProducts={this.handleAddProduct}
-              />
+              <Col lg={4} className="mb-2">
+                <Card style={{ width: '18rem', textAlign: 'center' }}>
+                  <Card.Img className="mx-auto d-block" style={{ height: '10rem', width: '17rem' }} variant="top" src={card.image} />
+                  <Card.Body>
+                    <Card.Title>{card.name}</Card.Title>
+                    <Card.Text>
+                      {card.price}€
+                    </Card.Text>
+                    <Card.Text>
+                      <b>Stock:</b> {card.qtaStock}
+                    </Card.Text>
+                    <Button variant="primary" className="me-2" onClick={() => this.props.handleAddProduct(card)}>add cart</Button>
+                    <Button variant="danger" onClick={() => this.props.handleDelete(card.id)}>delete</Button>
+                  </Card.Body>
+                </Card>
+              </Col>
             ))}
-          </div>
-        </div>
-        <section>
-          {this.state.showModal &&
-            <CartModal
-              onShowModal={this.handleShowModal}
-              onChangeQtaProductCart={this.handleChangeQtaProductCart}
-              cart={this.state.cart}
-            />}
-
-        </section>
+          </Row>
+        </Container>
+        <CartModal
+          onShowModal={() => this.setState({ showCartModal: !this.state.showCartModal })}
+          onChangeQtaProductCart={this.handleChangeQtaProductCart}
+          cart={this.state.cart}
+          show={this.state.showCartModal}
+        />
       </>
     );
   }

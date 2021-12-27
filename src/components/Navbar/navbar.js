@@ -1,59 +1,54 @@
 import { Component } from 'react'
+import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import LoginUser from '../user/login/loginUser';
 import RegisterUser from '../user/register/registerUser'
-export default class Navbar extends Component {
+export default class NavbarComponent extends Component {
   state = {
-    showModal: false,
     toggle: {
-      userOption: false,
-      registerModal: false,
-      loginModal: false
+      registerUserModal: false,
+      loginUserModal: false
     },
   }
   handleToggle = whatToggle => {
-    console.log(whatToggle);
-    const toggle = { ... this.state.toggle };
+    const toggle = { ...this.state.toggle };
     toggle[whatToggle] = !toggle[whatToggle];
     this.setState({ toggle })
   }
 
   render() {
-    const toggleUserOption = `dropdown-menu cursor-pointer${this.state.toggle.userOption ? " show" : ""}`;
+    const iconUser = <i
+      className="bi bi-person cursor-pointer text-white"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+    </i>;
+    const cartIcon = <span className="float-right text-white cursor-pointer" onClick={this.props.onShowModal}>Cart
+      <span className=" badge rounded-pill bg-danger position-absolute" style={{ padding: '0.1em 0.3em' }}>
+        {this.props.totalProductOnCart}
+      </span>
+    </span>;
     return (
       <>
-        <nav className="navbar navbar-dark bg-dark">
-          <div className="container-fluid">
-            <span className="navbar-brand mb-0 h1">Fullstack Hardware</span>
-            <div className='d-flex row'>
-              <div className='col'>
-                <div className="dropdown">
-                  <span>
-                    <i
-                      className="bi bi-person cursor-pointer dropdown-toggle text-white "
-                      onClick={() => this.handleToggle('userOption')}
-                      id="dropdownMenuButton1"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                    </i>
-                  </span>
-                  <ul className={toggleUserOption} aria-labelledby="dropdownMenuButton1">
-                    <li><span className='dropdown-item' onClick={() => this.handleToggle('registerModal')}>Register</span></li>
-                    <li><a className="dropdown-item" href="#">Another action</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div className='col me-3'>
-                <span className="float-right text-white cursor-pointer" onClick={this.props.onShowModal}>Cart
-                  <span className=" badge rounded-pill bg-danger position-absolute" style={{ padding: '0.1em 0.3em' }}>
-                    {this.props.totalProductOnCart}
-                  </span>
-                </span>
-              </div>
-            </div>
+        {<RegisterUser show={this.state.toggle.registerUserModal} onShowModal={() => this.handleToggle('registerUserModal')} />}
+        {<LoginUser show={this.state.toggle.loginUserModal} onShowModal={() => this.handleToggle('loginUserModal')} />}
 
-          </div>
-        </nav>
-        {this.state.toggle.registerModal && <RegisterUser onCloseModalRegister={() => this.handleToggle('registerModal')} />}
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+          <Container fluid>
+            <Navbar.Brand href="#home">Fullstack Hardware</Navbar.Brand>
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
+              <Nav>
+                <NavDropdown className='text-white' title={iconUser} id="collasible-nav-dropdown">
+                  <NavDropdown.Item onClick={() => this.handleToggle('registerUserModal')} >Register</NavDropdown.Item>
+                  <NavDropdown.Item onClick={() => this.handleToggle('loginUserModal')}>Login</NavDropdown.Item>
+                </NavDropdown>
+                <Nav.Link className='me-4' eventKey={2} >
+                  {cartIcon}
+                </Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
       </>
     )
   }

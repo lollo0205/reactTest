@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { Col, ListGroup, Row } from "react-bootstrap";
 
 export default class CartProductDetails extends Component {
   onChangeQtaProductCart = (op, idProductCart) => {
@@ -6,29 +7,29 @@ export default class CartProductDetails extends Component {
   }
   render() {
     return (
-      <li className="list-group-item">
-        <div className="row">
-          <div className="col">
+      <ListGroup.Item>
+        <Row>
+          <Col>
             {this.props.product.name}
-          </div>
-          <div className="col">
-            <div className="row">
-              <div className="col">
-                <i className=" cursor-pointer bi bi-bag-plus-fill" onClick={() => this.onChangeQtaProductCart('+', this.props.product.id)}></i>
-              </div>
-              <div className="col">
-                <span>{this.props.product.qta}</span>
-              </div>
-              <div className="col">
+          </Col>
+          <Col >
+            <Row >
+              <Col className=" d-flex flex-row-reverse">
                 <i className=" cursor-pointer bi bi-bag-dash-fill" onClick={() => this.onChangeQtaProductCart('-', this.props.product.id)}></i>
-              </div>
-            </div>
-          </div>
-          <div className="col d-flex flex-row-reverse">
+              </Col>
+              <Col className=" d-flex flex-row-reverse">
+                <span>{this.props.product.qta}</span>
+              </Col>
+              <Col className=" d-flex flex-row-reverse">
+                <i className="cursor-pointer bi bi-bag-plus-fill" onClick={() => this.onChangeQtaProductCart('+', this.props.product.id)}></i>
+              </Col>
+            </Row>
+          </Col>
+          <Col className=" d-flex flex-row-reverse">
             {this.props.product.qta * this.props.product.priceSinglePiece} €
-          </div>
-        </div>
-      </li>
+          </Col>
+        </Row>
+      </ListGroup.Item>
     )
   }
 }
