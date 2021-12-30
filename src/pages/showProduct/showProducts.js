@@ -1,11 +1,19 @@
 import { Component } from "react";
 import { Button, Row, Col, Container, Card } from "react-bootstrap";
 import { cards } from "../../mock";
+import ShowProductsService from "./showProducts.service";
 export default class ShowProducts extends Component {
+  showProductsService = new ShowProductsService();
   state = {
-    cards
+    cards: []
   }
-
+  componentDidMount() {
+    this.showProductsService.getAllProducts()
+      .then(response => {
+        console.log(response.data);
+        this.setState({ cards: response.data })
+      });
+  }
   handleDelete = cardId => {
     const cards = this.state.cards.filter(card => card.id !== cardId);
     this.setState({ cards });
@@ -37,10 +45,10 @@ export default class ShowProducts extends Component {
           <h1> Quale componente desideri acquistare?</h1>
           <hr />
           <Row>
-            {this.state.cards.map((card, idx) => (
+            {this.state.cards.length > 0 && (this.state.cards.map((card, idx) => (
               <Col key={idx} lg={4} className="mt-2">
                 <Card style={{ width: '18rem', textAlign: 'center' }}>
-                  <Card.Img className="mx-auto d-block" style={{ height: '10rem', width: '17rem' }} variant="top" src={card.image} />
+                  <Card.Img className="mx-auto d-block" style={{ height: '10rem', width: '17rem' }} variant="top" src={require(`../../images/${card.image}.jfif`)} />
                   <Card.Body>
                     <Card.Title>{card.name}</Card.Title>
                     <Card.Text>
@@ -55,7 +63,7 @@ export default class ShowProducts extends Component {
                 </Card>
               </Col>
 
-            ))}
+            )))}
           </Row>
         </Container>
       </>
