@@ -1,23 +1,28 @@
 {
   "files": {
     "main.css": "/reactTest/static/css/main.7bd91a11.css",
-    "main.js": "/reactTest/static/js/main.c13e6915.js",
+    "main.js": "/reactTest/static/js/main.dab7b7f3.js",
     "static/js/787.c4ce6adf.chunk.js": "/reactTest/static/js/787.c4ce6adf.chunk.js",
     "static/media/bootstrap-icons.woff?": "/reactTest/static/media/bootstrap-icons.38c4d2499557ae0379fd.woff",
     "static/media/bootstrap-icons.woff2?": "/reactTest/static/media/bootstrap-icons.2b56e79ae5013246de29.woff2",
+    "static/media/b550_A_PRO.jfif": "/reactTest/static/media/b550_A_PRO.a1660ce7ae958b5c7c6b.jfif",
+    "static/media/asrock_z690.jfif": "/reactTest/static/media/asrock_z690.0ce25798cb208adf9217.jfif",
     "static/media/ryzen_5_5600G.jfif": "/reactTest/static/media/ryzen_5_5600G.cf5d3a41d7a386b39f6f.jfif",
+    "static/media/g.Skill(16gb)_8gbx2.jfif": "/reactTest/static/media/g.Skill(16gb)_8gbx2.e3a612fd778419271425.jfif",
     "static/media/intel_i5.jfif": "/reactTest/static/media/intel_i5.e21c11943c24aa3fdb31.jfif",
+    "static/media/Corsair(32gb)_ 16GBx2.jfif": "/reactTest/static/media/Corsair(32gb)_ 16GBx2.853e1db52a17aeb16d21.jfif",
     "static/media/intel_i7.jfif": "/reactTest/static/media/intel_i7.220d10496a9a0a28e7c4.jfif",
     "static/media/ryzen_9_5900X.jfif": "/reactTest/static/media/ryzen_9_5900X.31610220fe38fb578565.jfif",
     "static/media/ryzen_7_5700G.jfif": "/reactTest/static/media/ryzen_7_5700G.927d7a76ed82ff8a3d98.jfif",
     "static/media/intel_i9.jfif": "/reactTest/static/media/intel_i9.a278be1159c2be884cea.jfif",
+    "static/media/G.Skill(64GB)_16GBx4.jfif": "/reactTest/static/media/G.Skill(64GB)_16GBx4.c39537c30adc830fd210.jfif",
     "index.html": "/reactTest/index.html",
     "main.7bd91a11.css.map": "/reactTest/static/css/main.7bd91a11.css.map",
-    "main.c13e6915.js.map": "/reactTest/static/js/main.c13e6915.js.map",
+    "main.dab7b7f3.js.map": "/reactTest/static/js/main.dab7b7f3.js.map",
     "787.c4ce6adf.chunk.js.map": "/reactTest/static/js/787.c4ce6adf.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7bd91a11.css",
-    "static/js/main.c13e6915.js"
+    "static/js/main.dab7b7f3.js"
   ]
 }
